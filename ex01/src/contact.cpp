@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsommet <jsommet@student.42.fr >           +#+  +:+       +#+        */
+/*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:42:53 by jsommet           #+#    #+#             */
-/*   Updated: 2024/11/04 21:22:49 by jsommet          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:55:13 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ Contact::Contact()
 
 }
 
-void		Contact::SetInfo(ContactInfo contactInfo, std::string _value)
+void		Contact::SetInfo(ContactInfo contactInfo, std::string value)
 {
 	switch (contactInfo)
 	{
 		case FirstName:
-			firstName = _value;
+			_firstName = value;
 		case LastName:
-			lastName = _value;
+			_lastName = value;
 		case NickName:
-			nickName = _value;
+			_nickName = value;
 		case PhoneNumber:
-			phoneNumber = _value;
+			_phoneNumber = value;
 		case DarkestSecret:
-			darkestSecret = _value;
+			_darkestSecret = value;
 	}
 }
 std::string	Contact::GetInfo(ContactInfo contactInfo)
@@ -38,15 +38,15 @@ std::string	Contact::GetInfo(ContactInfo contactInfo)
 	switch (contactInfo)
 	{
 		case FirstName:
-			return (firstName);
+			return (_firstName);
 		case LastName:
-			return (lastName);
+			return (_lastName);
 		case NickName:
-			return (nickName);
+			return (_nickName);
 		case PhoneNumber:
-			return (phoneNumber);
+			return (_phoneNumber);
 		case DarkestSecret:
-			return (darkestSecret);
+			return (_darkestSecret);
 	}
 	return "";
 }

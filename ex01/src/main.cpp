@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr >           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:12:21 by jsommet           #+#    #+#             */
-/*   Updated: 2024/11/04 21:21:11 by jsommet          ###   ########.fr       */
+/*   Updated: 2024/11/10 21:30:13 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	CommandAdd(Phonebook& phonebook)
 {
 	Contact		contact;
 
-	contact = Contact();
 	contact.SetInfo(FirstName, AskForInput("First Name: "));
 	contact.SetInfo(LastName, AskForInput("Last Name: "));
 	contact.SetInfo(NickName, AskForInput("Nick Name: "));
@@ -30,6 +29,11 @@ void	CommandSearch(Phonebook& phonebook)
 	int	index;
 	std::string input;
 
+	if (phonebook.GetContactCount() == 0)
+	{
+		std::cout << "There are no contacts." << std::endl;
+		return ;
+	}
 	index = -1;
 	phonebook.ListContacts();
 	input = "NaN";
@@ -58,9 +62,9 @@ int	main(void)
 	Phonebook phonebook;
 	std::string line;
 
-	phonebook = Phonebook();
 	while (1)
 	{
+		std::cerr << "PHONEBOOK $ ";
 		std::getline(std::cin, line);
 		if (!std::cin)
 		{
@@ -76,6 +80,8 @@ int	main(void)
 			CommandSearch(phonebook);
 		else if (line == "EXIT")
 			CommandExit();
+		else if (!line.empty())
+			std::cerr << "Invalid command" << std::endl;
 	}
 	return (1);
 }
