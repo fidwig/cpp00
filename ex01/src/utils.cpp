@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:07:50 by jsommet           #+#    #+#             */
-/*   Updated: 2024/11/12 18:55:30 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/07 22:41:39 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ std::string	FormatEntry(std::string entry)
 	if (entry.length() > MAX_ENTRY_LEN)
 		return (entry.substr(0, MAX_ENTRY_LEN - 1) + ".");
 	else if (entry.length() < MAX_ENTRY_LEN)
-		return (entry + std::string(MAX_ENTRY_LEN - entry.length(), ' '));
+		return (std::string(MAX_ENTRY_LEN - entry.length(), ' ') + entry);
 	else
 		return (entry);
 }

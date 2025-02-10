@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:43:00 by jsommet           #+#    #+#             */
-/*   Updated: 2024/11/12 18:53:13 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/07 22:43:10 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	Phonebook::ListContacts()
 	std::cout << FormatEntry("Index") << "|" << FormatEntry("First Name") << "|" << FormatEntry("Last Name") << "|" << FormatEntry("Nick Name") << std::endl;
 	for (int i = 0; i < _contactCount; i++)
 	{
-		std::cout << i << "         " << "|";
+		std::cout << "         " << i << "|";
 		std::cout << FormatEntry(contacts[i].GetInfo(FirstName)) << "|";
 		std::cout << FormatEntry(contacts[i].GetInfo(LastName)) << "|";
 		std::cout << FormatEntry(contacts[i].GetInfo(NickName)) << std::endl;

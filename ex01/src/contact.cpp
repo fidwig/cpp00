@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:42:53 by jsommet           #+#    #+#             */
-/*   Updated: 2024/11/12 18:55:13 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/07 22:33:07 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Contact::Contact()
 {
-
 }
 
 void		Contact::SetInfo(ContactInfo contactInfo, std::string value)
@@ -23,12 +22,16 @@ void		Contact::SetInfo(ContactInfo contactInfo, std::string value)
 	{
 		case FirstName:
 			_firstName = value;
+			break ;
 		case LastName:
 			_lastName = value;
+			break ;
 		case NickName:
 			_nickName = value;
+			break ;
 		case PhoneNumber:
 			_phoneNumber = value;
+			break ;
 		case DarkestSecret:
 			_darkestSecret = value;
 	}
