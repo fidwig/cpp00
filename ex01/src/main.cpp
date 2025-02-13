@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:12:21 by jsommet           #+#    #+#             */
-/*   Updated: 2025/02/07 22:37:15 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:27:10 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	CommandSearch(Phonebook& phonebook)
 	{
 		input = AskForInput("Enter the desired contact's index: ");
 		if (!IsStringNumeric(input))
+		{
 			std::cerr << "Input has to be a number." << "\n";
+			return ;
+		}
 	}
 	index = atoi(input.c_str());
 	if (index < 0 || index >= phonebook.GetContactCount())
