@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:07:50 by jsommet           #+#    #+#             */
-/*   Updated: 2025/02/07 22:41:39 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:47:18 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ std::string	FormatEntry(std::string entry)
 		return (entry);
 }
 
-void	ExitWithMessage(int exitCode, std::string message)
-{
-	std::cerr << message << "\n";
-	exit(exitCode);
-}
-
 bool	IsStringNumeric(const std::string &s)
 {
 	std::string::const_iterator it = s.begin();
@@ -35,10 +29,9 @@ bool	IsStringNumeric(const std::string &s)
 	return !s.empty() && it == s.end();
 }
 
-std::string	AskForInput(std::string prompt)
+int	AskForInput(std::string prompt, std::string &line)
 {
-	std::string	line;
-
+	line.clear();
 	while (line.empty())
 	{
 		std::cerr << prompt;
@@ -46,13 +39,13 @@ std::string	AskForInput(std::string prompt)
 		if (!std::cin)
 		{
 			if (std::cin.eof())
-				ExitWithMessage(EXIT_SUCCESS, "EXIT");
+				return (std::cerr << "EXIT" << "\n", -1);
 			else
-				ExitWithMessage(EXIT_FAILURE, "error reading stdin");
+				return (std::cerr << "error reading stdin" << "\n", -1);
 			break ;
 		}
 		if (line.empty())
 			std::cerr << "Input can not be empty.\n";
 	}
-	return (line);
+	return 0;
 }

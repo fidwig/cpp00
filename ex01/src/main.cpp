@@ -6,25 +6,37 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:12:21 by jsommet           #+#    #+#             */
-/*   Updated: 2025/02/13 17:27:10 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:47:57 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-void	CommandAdd(Phonebook& phonebook)
+int	CommandAdd(Phonebook& phonebook)
 {
 	Contact		contact;
+	std::string	input;
 
-	contact.SetInfo(FirstName, AskForInput("First Name: "));
-	contact.SetInfo(LastName, AskForInput("Last Name: "));
-	contact.SetInfo(NickName, AskForInput("Nick Name: "));
-	contact.SetInfo(PhoneNumber, AskForInput("Phone Number: "));
-	contact.SetInfo(DarkestSecret, AskForInput("Darkest Secret: "));
+	if (AskForInput("First Name: ", input) == -1)
+		return -1;
+	contact.SetInfo(FirstName, input);
+	if (AskForInput("Last Name: ", input) == -1)
+		return -1;
+	contact.SetInfo(LastName, input);
+	if (AskForInput("Nick Name: ", input) == -1)
+		return -1;
+	contact.SetInfo(NickName, input);
+	if (AskForInput("Phone Number: ", input) == -1)
+		return -1;
+	contact.SetInfo(PhoneNumber, input);
+	if (AskForInput("Darkest Secret: ", input) == -1)
+		return -1;
+	contact.SetInfo(DarkestSecret, input);
 	phonebook.AddContact(contact);
+	return 0;
 }
 
-void	CommandSearch(Phonebook& phonebook)
+int	CommandSearch(Phonebook& phonebook)
 {
 	int	index;
 	std::string input;
@@ -32,32 +44,29 @@ void	CommandSearch(Phonebook& phonebook)
 	if (phonebook.GetContactCount() == 0)
 	{
 		std::cout << "There are no contacts." << std::endl;
-		return ;
+		return 0;
 	}
 	index = -1;
 	phonebook.ListContacts();
 	input = "NaN";
 	while (!IsStringNumeric(input))
 	{
-		input = AskForInput("Enter the desired contact's index: ");
+		if (AskForInput("Enter the desired contact's index: ", input) == -1)
+			return -1;
 		if (!IsStringNumeric(input))
 		{
 			std::cerr << "Input has to be a number." << "\n";
-			return ;
+			return 0;
 		}
 	}
 	index = atoi(input.c_str());
 	if (index < 0 || index >= phonebook.GetContactCount())
 	{
 		std::cout << "Input does not match a contact." << std::endl;
-		return ;
+		return 0;
 	}
 	phonebook.ShowContact(index);
-}
-
-void	CommandExit()
-{
-	ExitWithMessage(EXIT_SUCCESS, "EXIT");
+	return 0;
 }
 
 int	main(void)
@@ -72,19 +81,25 @@ int	main(void)
 		if (!std::cin)
 		{
 			if (std::cin.eof())
-				ExitWithMessage(EXIT_SUCCESS, "EXIT");
+				return (std::cerr << "EXIT\n", 0);
 			else
-				ExitWithMessage(EXIT_FAILURE, "error reading stdin");
+				return (std::cerr << "error reading stdin\n", 1);
 			break ;
 		}
 		if (line == "ADD")
-			CommandAdd(phonebook);
+		{
+			if (CommandAdd(phonebook) < 0)
+				return -1;
+		}
 		else if (line == "SEARCH")
-			CommandSearch(phonebook);
+		{
+			if (CommandSearch(phonebook) < 0)
+				return -1;
+		}
 		else if (line == "EXIT")
-			CommandExit();
+			return (std::cerr << "EXIT\n", 0);
 		else if (!line.empty())
 			std::cerr << "Invalid command" << std::endl;
 	}
-	return (1);
+	return (0);
 }

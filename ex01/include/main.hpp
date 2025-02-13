@@ -15,14 +15,13 @@
 
 # include <iostream>
 # include <string>
-# include <stdlib.h>
 # include "contact.hpp"
 # include "phonebook.hpp"
 
 # define MAX_ENTRY_LEN 10
 
 std::string	FormatEntry(std::string entry);
-std::string	AskForInput(std::string prompt);
+int			AskForInput(std::string prompt, std::string& line);
 void		ExitWithMessage(int exitCode, std::string message);
 bool		IsStringNumeric(const std::string &s);
 
