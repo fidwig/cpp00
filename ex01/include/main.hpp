@@ -14,7 +14,7 @@
 # define MAIN_HPP
 
 # include <iostream>
-# include <string>
+# include <cstdlib>
 # include "contact.hpp"
 # include "phonebook.hpp"
 

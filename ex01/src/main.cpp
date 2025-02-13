@@ -6,7 +6,7 @@
 /*   By: jsommet <jsommet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:12:21 by jsommet           #+#    #+#             */
-/*   Updated: 2025/02/13 17:47:57 by jsommet          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:00:30 by jsommet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	CommandSearch(Phonebook& phonebook)
 			return 0;
 		}
 	}
-	index = atoi(input.c_str());
+	index = std::atoi(input.c_str());
 	if (index < 0 || index >= phonebook.GetContactCount())
 	{
 		std::cout << "Input does not match a contact." << std::endl;
